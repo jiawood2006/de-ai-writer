@@ -49,7 +49,8 @@ def build_prompt(text: str) -> str:
     return CORE_PROMPT + "\n\n【用户文本】\n" + text
 
 def load_config():
-    """读取配置：参数优先，其次 ~/.deai_writer.conf 配置文件。
+    """读取配置：环境变量优先，其次参数，最后 ~/.deai_writer.conf 配置文件。
+    环境变量: LLM_API_KEY / LLM_BASE_URL / LLM_MODEL
     配置示例 (~/.deai_writer.conf):
         [llm]
         key = sk-xxx
@@ -59,9 +60,9 @@ def load_config():
     import configparser
     cfg = configparser.ConfigParser()
     cfg.read(os.path.expanduser("~/.deai_writer.conf"))
-    key = cfg.get("llm", "key", fallback="")
-    base = cfg.get("llm", "base_url", fallback="https://api.openai.com/v1")
-    model = cfg.get("llm", "model", fallback="gpt-4o-mini")
+    key = os.environ.get("LLM_API_KEY", "") or cfg.get("llm", "key", fallback="")
+    base = os.environ.get("LLM_BASE_URL", "") or cfg.get("llm", "base_url", fallback="https://api.openai.com/v1")
+    model = os.environ.get("LLM_MODEL", "") or cfg.get("llm", "model", fallback="gpt-4o-mini")
     return key, base, model
 
 def call_llm(prompt: str, api_key: str = "", base_url: str = "", model: str = "") -> str:
