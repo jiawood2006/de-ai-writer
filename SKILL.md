@@ -44,14 +44,3 @@ python3 ~/.hermes/skills/utilities/de-ai-writer/scripts/deai.py 稿子.txt --pro
 ## 零依赖
 
 纯 Python 标准库，无需安装任何包。
-
-## 💛 免费使用 · 自愿支持
-
-**本技能完全免费使用。**
-
-觉得好用、帮到你了，可以**自愿扫码支持**（金额随意，一杯咖啡即可）：
-
-![支付宝收款码](assets/alipay_qr.jpg)
-
-> 支持过我的人，后续 Pro 版/批量服务有优惠。
-> 想提需求、反馈问题，欢迎到 Gitee 仓库提 Issue。
